@@ -17,7 +17,7 @@ const Pagination = ({ totalPosts, postsPerPage, currentPage, setCurrentPage }: P
       {pages.map((page) => (
         <button
           key={page}
-          onClick={() => setCurrentPage(page)} // 👈 updated
+          onClick={() => setCurrentPage(page)}
           className={`px-2 py-2 rounded ${
             currentPage === page
               ? "bg-blue-500 text-white"

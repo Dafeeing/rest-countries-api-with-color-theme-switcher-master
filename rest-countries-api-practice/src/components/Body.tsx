@@ -47,16 +47,18 @@ const Body = () => {
 
   const lastCountryIndex = currentPage * postsPerPage;
   const firstCountryIndex = lastCountryIndex - postsPerPage;
-  const currentCountries =  countries.slice(firstCountryIndex, lastCountryIndex)
+  
 
 
-  const filteredCountries = currentCountries
+  const filteredCountries = countries
     .filter((country) =>
       country.name.common.toLowerCase().includes(search.toLowerCase())
     )
     .filter((country) =>
       region ? country.region === region : true
     );
+
+    const currentCountries =  filteredCountries.slice(firstCountryIndex, lastCountryIndex)
 
   return (
     <div className={`${darkMode ? "bg-[hsl(207,26%,17%)] text-white" : "bg-gray-100 text-black"} min-h-screen p-20 text-[0.875rem]`}>
@@ -87,15 +89,15 @@ const Body = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-10 mt-10">
-        {filteredCountries.length > 0 ? (
-          filteredCountries.map((country) => (
+        {currentCountries.length > 0 ? (
+          currentCountries.map((country) => (
             <Card key={country.name.common} {...country} />
           ))
         ) : (
           <p className="col-span-4 text-center text-gray-400">No countries found.</p>
         )}
       </div>
-      <Pagination totalPosts={countries.length} postsPerPage={postsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination totalPosts={filteredCountries.length} postsPerPage={postsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 };
