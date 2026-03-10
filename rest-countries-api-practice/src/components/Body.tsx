@@ -2,6 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import { useAppContext } from "./AppContext";
+import Pagination from "./Pagination";
 
 type Country = {
   name: {
@@ -46,7 +47,6 @@ const Body = () => {
 
   const lastCountryIndex = currentPage * postsPerPage;
   const firstCountryIndex = lastCountryIndex - postsPerPage;
-
   const currentCountries =  countries.slice(firstCountryIndex, lastCountryIndex)
 
 
@@ -95,10 +95,7 @@ const Body = () => {
           <p className="col-span-4 text-center text-gray-400">No countries found.</p>
         )}
       </div>
-
-      <div>
-        <
-      </div>
+      <Pagination totalPosts={countries.length} postsPerPage={postsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

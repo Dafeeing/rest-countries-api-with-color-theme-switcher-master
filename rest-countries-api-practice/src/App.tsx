@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Body />} />
         <Route path="/details" element={<CountryDetail />} />
       </Routes>
+    
     </>
   );
 }
